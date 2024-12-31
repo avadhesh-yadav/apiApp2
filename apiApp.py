@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from cryptography.fernet import Fernet
 from flask_cors import CORS 
+import json
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -27,9 +28,9 @@ def decrypt():
 
         # Decrypt the token
         decrypted_text = f.decrypt(encrypted_token.encode('utf-8')).decode('utf-8')
+        decrypted_json = json.loads(decrypted_text)
+        return jsonify(decrypted_json)
 
-        # Return the decrypted text
-        return jsonify({'decrypted': decrypted_text})
 
     except Exception as e:
         # Return error message if decryption fails
