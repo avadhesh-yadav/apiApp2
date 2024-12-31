@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from cryptography.fernet import Fernet
 from flask_cors import CORS  # Import CORS
 
+# Initialize the Flask app
 app = Flask(__name__)
 
 # Enable CORS for any Salesforce instance (wildcard for Salesforce domains)
@@ -34,5 +35,6 @@ def decrypt():
         # Return error message if decryption fails
         return jsonify({'error': str(e)}), 400
 
+# Run the application (use host='0.0.0.0' when deploying to external server)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
