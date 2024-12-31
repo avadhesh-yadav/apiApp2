@@ -7,7 +7,7 @@ import json
 app = Flask(__name__)
 
 # Enable CORS for any Salesforce instance (wildcard for Salesforce domains)
-CORS(app, origins=["*"])
+CORS(app, origins=["https://*.lightning.force.com", "https://*.force.com","*"])
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt():
